@@ -131,7 +131,10 @@
 # ---------------------------------------------------------
 # Macros Úteis
 # ---------------------------------------------------------
-.macro SYSCALL n
+# NOTA: macro renomeada de SYSCALL para DO_SYSCALL porque
+# o GNU as trata nomes de macro como case-insensitive, o que
+# colide com a instrução nativa "syscall".
+.macro DO_SYSCALL n
     movq \n, %rax
     syscall
 .endm
