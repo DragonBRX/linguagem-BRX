@@ -1,0 +1,37 @@
+run "linha"
+
+# Exemplo 21: Desenhar linhas
+
+win
+  clr "#0d1117"
+
+  # Linhas diagonais
+  lin 0 0 800 600 "#FF0000"
+  lin 800 0 0 600 "#00FF00"
+
+  # Grade
+  loop x:0 to 800 step 100
+    lin x 0 x 600 "#333333"
+  end
+
+  loop y:0 to 600 step 100
+    lin 0 y 800 y "#333333"
+  end
+
+  # Estrela no centro
+  var cx:num = 400
+  var cy:num = 300
+  var r:num = 150
+
+  loop i:0 to 5
+    var ang1:num = i * 72
+    var ang2:num = (i + 1) * 72
+    var x1:num = cx + r * cos(ang1 * 3.14159 / 180)
+    var y1:num = cy + r * sin(ang1 * 3.14159 / 180)
+    var x2:num = cx + r * cos(ang2 * 3.14159 / 180)
+    var y2:num = cy + r * sin(ang2 * 3.14159 / 180)
+    lin x1 y1 x2 y2 "#FFD700"
+  end
+end
+
+wait 3000

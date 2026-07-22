@@ -1,0 +1,37 @@
+run "loops"
+
+# Loop com range
+out "=== Loop to ==="
+loop i:0 to 5
+  out "i = " + str(i)
+end
+
+# Loop com step
+out "=== Loop step ==="
+loop i:0 to 20 step 5
+  out "i = " + str(i)
+end
+
+# Loop while
+out "=== Loop while ==="
+var contador:num = 3
+loop while contador > 0
+  out "contador = " + str(contador)
+  contador -= 1
+end
+
+# Loop forever com break
+out "=== Loop forever ==="
+loop forever
+  out "Rodando..."
+  break
+end
+
+# Loop com continue
+out "=== Loop continue ==="
+loop i:0 to 10
+  if i == 5
+    continue
+  end
+  out "i = " + str(i)
+end

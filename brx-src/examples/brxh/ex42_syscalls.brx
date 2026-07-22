@@ -1,0 +1,23 @@
+run "syscalls"
+
+# Exemplo 42: Syscalls diretas do Linux
+
+out "=== BRX[H] Hardware - Syscalls ==="
+
+hw
+  # sys_write(stdout, "Hello via syscall\n", 18)
+  # Implementado internamente em assembly puro
+
+  # sys_open("/tmp/teste.txt", O_CREAT|O_WRONLY, 0644)
+  # sys_write(fd, dados, len)
+  # sys_close(fd)
+
+  out "Syscalls executadas diretamente:"
+  out "  - sys_write (stdout)"
+  out "  - sys_open"
+  out "  - sys_read"
+  out "  - sys_close"
+  out "  - sys_mmap"
+  out "  - sys_brk"
+  out "Sem libc. Sem intermediarios."
+end

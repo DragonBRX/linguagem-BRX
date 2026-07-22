@@ -1,0 +1,17 @@
+run "sandbox"
+
+# Exemplo 50: Sandbox - execucao isolada
+
+out "=== BRX[S] Sandbox ==="
+
+sbx
+  lim mem 64      # 64 MB max
+  lim time 5000   # 5 segundos max
+
+  out "Executando codigo isolado..."
+  load "plugin.brx"
+
+  out "Codigo isolado finalizado."
+end
+
+out "Retornou ao hospedeiro com seguranca."

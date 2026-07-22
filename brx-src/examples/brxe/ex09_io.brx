@@ -1,0 +1,21 @@
+run "io"
+
+# Output
+out "=== Output ==="
+out "Mensagem simples"
+out "Numero: " + str(42)
+out "Booleano: " + str(true)
+
+# Input (interativo)
+out ""
+out "=== Input ==="
+out "Digite seu nome:"
+var nome:txt
+in nome
+out "Ola, " + nome + "!"
+
+out "Digite um numero:"
+var num:txt
+in num
+out "Voce digitou: " + num
+out "Dobro: " + str(num(num) * 2)

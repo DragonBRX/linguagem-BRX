@@ -1,0 +1,8 @@
+run "hello"
+
+# Hello World em BRX
+out "Hello, BRX World!"
+out "Linguagem de programacao com dominio total."
+
+var nome:txt = "Dragon"
+out "Ola, " + nome + "!"

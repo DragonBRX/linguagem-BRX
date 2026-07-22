@@ -1,0 +1,113 @@
+run "snake"
+
+# Snake em BRX
+
+win
+  sz 800x600
+  bg "#0d1117"
+end
+
+var GRID_SIZE:num = 20
+var WIDTH:num = 40
+var HEIGHT:num = 30
+
+# Cobra
+var snake_x:list = [20]
+var snake_y:list = [15]
+var snake_len:num = 1
+var dir_x:num = 1
+var dir_y:num = 0
+
+# Comida
+var food_x:num = rand(0, WIDTH - 1)
+var food_y:num = rand(0, HEIGHT - 1)
+
+var score:num = 0
+var game_over:bool = false
+
+loop while win.open and not game_over
+  # === INPUT ===
+  var tecla:txt
+  key tecla
+
+  if tecla == "w" and dir_y == 0
+    dir_x = 0
+    dir_y = -1
+  end
+  if tecla == "s" and dir_y == 0
+    dir_x = 0
+    dir_y = 1
+  end
+  if tecla == "a" and dir_x == 0
+    dir_x = -1
+    dir_y = 0
+  end
+  if tecla == "d" and dir_x == 0
+    dir_x = 1
+    dir_y = 0
+  end
+  if tecla == "esc"
+    break
+  end
+
+  # === UPDATE ===
+  var new_x:num = snake_x[0] + dir_x
+  var new_y:num = snake_y[0] + dir_y
+
+  # Colisao com paredes
+  if new_x < 0 or new_x >= WIDTH or new_y < 0 or new_y >= HEIGHT
+    game_over = true
+  end
+
+  # Colisao com corpo
+  loop i:1 to snake_len
+    if new_x == snake_x[i] and new_y == snake_y[i]
+      game_over = true
+    end
+  end
+
+  # Move cobra
+  if not game_over
+    # Insere nova cabeca
+    push(snake_x, new_x)
+    push(snake_y, new_y)
+
+    # Verifica comida
+    if new_x == food_x and new_y == food_y
+      score += 10
+      snake_len += 1
+      food_x = rand(0, WIDTH - 1)
+      food_y = rand(0, HEIGHT - 1)
+    else
+      # Remove cauda
+      # (na implementacao real, shift da lista)
+    end
+  end
+
+  # === DRAW ===
+  clr "#0d1117"
+
+  # Comida
+  drw food_x * GRID_SIZE food_y * GRID_SIZE GRID_SIZE GRID_SIZE "#e94560"
+
+  # Cobra
+  loop i:0 to snake_len
+    var cor:txt = "#16c79a"
+    if i == 0
+      cor = "#7efcd2"
+    end
+    drw snake_x[i] * GRID_SIZE snake_y[i] * GRID_SIZE GRID_SIZE GRID_SIZE cor
+  end
+
+  # Info
+  outfb 10 10 "Snake BRX" "#FFFFFF"
+  outfb 10 30 "Score: " + str(score) "#888888"
+
+  if game_over
+    outfb 350 280 "GAME OVER" "#e94560"
+    outfb 320 310 "Score: " + str(score) "#FFFFFF"
+  end
+
+  drw
+  wait 100
+end

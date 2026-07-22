@@ -1,0 +1,44 @@
+run "builtins"
+
+# Matematica
+out "=== Matematica ==="
+out "abs(-10) = " + str(abs(-10))
+out "sqrt(16) = " + str(sqrt(16))
+out "min(5, 3, 8) = " + str(min(5, 3, 8))
+out "max(5, 3, 8) = " + str(max(5, 3, 8))
+out "floor(3.7) = " + str(floor(3.7))
+out "ceil(3.2) = " + str(ceil(3.2))
+out "round(3.5) = " + str(round(3.5))
+
+# Trigonometria
+out ""
+out "=== Trigonometria ==="
+out "sin(0) = " + str(sin(0))
+out "cos(0) = " + str(cos(0))
+
+# Aleatorio
+out ""
+out "=== Aleatorio ==="
+out "rand(1, 100) = " + str(rand(1, 100))
+
+# Strings
+out ""
+out "=== Strings ==="
+var texto:txt = "Hello BRX"
+out "Original: " + texto
+out "lower: " + lower(texto)
+out "upper: " + upper(texto)
+out "len: " + str(len(texto))
+
+var frase:txt = "um,dois,tres"
+var partes:list = split(frase, ",")
+out "split: " + str(partes)
+out "join: " + join(partes, " | ")
+
+# Type
+out ""
+out "=== Type ==="
+out "type(10) = " + type(10)
+out "type("texto") = " + type("texto")
+out "type(true) = " + type(true)
+out "type([1,2]) = " + type([1, 2])

@@ -1,0 +1,30 @@
+# Build artifacts
+build/linux/brx
+build/linux/*.o
+build/windows/*.exe
+build/windows/*.obj
+build/bsd/brx
+build/bsd/*.o
+*.bin
+
+# Debug
+*.debug
+*.sym
+*.core
+core.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+tmp/
+temp/
+*.tmp

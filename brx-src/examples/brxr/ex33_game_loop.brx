@@ -1,0 +1,68 @@
+run "game_loop"
+
+# Exemplo 33: Game Loop completo com FPS
+
+win
+  sz 800x600
+  bg "#0d1117"
+end
+
+var frame_count:num = 0
+var last_time:num = 0
+var fps:num = 0
+
+loop while win.open
+  var start_time:num = time()
+
+  # === UPDATE ===
+  frame_count += 1
+
+  # === DRAW ===
+  clr "#0d1117"
+
+  # Grade animada
+  loop x:0 to 800 step 50
+    lin x 0 x 600 "#1a1a2e"
+  end
+  loop y:0 to 600 step 50
+    lin 0 y 800 y "#1a1a2e"
+  end
+
+  # Bola pulsante
+  var raio:num = 30 + sin(frame_count * 0.1) * 10
+  circ 400 300 raio "#e94560"
+
+  # Particulas
+  loop i:0 to 10
+    var px:num = 400 + cos(frame_count * 0.05 + i) * 150
+    var py:num = 300 + sin(frame_count * 0.05 + i * 0.5) * 100
+    circ px py 5 "#16c79a"
+  end
+
+  # FPS
+  outfb 10 10 "FPS: " + str(fps) "#FFFFFF"
+  outfb 10 30 "Frame: " + str(frame_count) "#888888"
+
+  drw
+
+  # === TIMING ===
+  var elapsed:num = time() - start_time
+  var target:num = 16  # ~60 FPS
+  if elapsed < target
+    wait target - elapsed
+  end
+
+  # Calcula FPS a cada segundo
+  if time() - last_time >= 1000
+    fps = frame_count
+    frame_count = 0
+    last_time = time()
+  end
+
+  # Sair
+  var tecla:txt
+  key tecla
+  if tecla == "esc"
+    break
+  end
+end

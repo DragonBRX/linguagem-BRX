@@ -1,0 +1,55 @@
+run "sprite_move"
+
+# Exemplo 31: Movimento de sprite com velocidade
+
+win
+  sz 800x600
+  tt "Sprite Movement"
+  bg "#1a1a2e"
+
+  # Jogador
+  spr "" x:375 y:275 z:2
+    vel x:0 y:0
+    col "#16c79a"
+    w 50
+    h 50
+  end
+
+  # Obstaculo
+  spr "" x:500 y:200 z:1
+    vel x:0 y:0
+    col "#e94560"
+    w 60
+    h 60
+  end
+end
+
+loop while win.open
+  # Input
+  var tecla:txt
+  key tecla
+
+  if tecla == "w"
+    player.vel.y = -5
+  else if tecla == "s"
+    player.vel.y = 5
+  else
+    player.vel.y = 0
+  end
+
+  if tecla == "a"
+    player.vel.x = -5
+  else if tecla == "d"
+    player.vel.x = 5
+  else
+    player.vel.x = 0
+  end
+
+  if tecla == "esc"
+    break
+  end
+
+  upd
+  drw
+  wait 16
+end

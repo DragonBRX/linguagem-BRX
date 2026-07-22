@@ -1,0 +1,14 @@
+run "plugin"
+
+# Exemplo 51: Plugin para sandbox
+# Este arquivo roda isolado do hospedeiro
+
+out "[PLUGIN] Iniciando..."
+
+var contador:num = 0
+loop i:0 to 100
+  contador += i
+end
+
+out "[PLUGIN] Soma de 0 a 100 = " + str(contador)
+out "[PLUGIN] Finalizando."

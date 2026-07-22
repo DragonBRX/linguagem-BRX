@@ -1,0 +1,29 @@
+run "recursao"
+
+# Fibonacci recursivo
+func fibonacci(n:num)
+  if n <= 1
+    return n
+  end
+  return fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+out "=== Sequencia de Fibonacci ==="
+loop i:0 to 10
+  out "fib(" + str(i) + ") = " + str(fibonacci(i))
+end
+
+# Torres de Hanoi
+func hanoi(n:num, origem:txt, destino:txt, auxiliar:txt)
+  if n == 1
+    out "Mover disco 1 de " + origem + " para " + destino
+    return
+  end
+  hanoi(n - 1, origem, auxiliar, destino)
+  out "Mover disco " + str(n) + " de " + origem + " para " + destino
+  hanoi(n - 1, auxiliar, destino, origem)
+end
+
+out ""
+out "=== Torres de Hanoi (3 discos) ==="
+hanoi(3, "A", "C", "B")

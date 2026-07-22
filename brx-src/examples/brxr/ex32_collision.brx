@@ -1,0 +1,100 @@
+run "colisao"
+
+# Exemplo 32: Deteccao de colisao AABB
+
+win
+  sz 800x600
+  bg "#0d1117"
+
+  # Jogador
+  var px:num = 100
+  var py:num = 100
+  var pw:num = 40
+  var ph:num = 40
+
+  # Obstaculos
+  var obs:list = [
+    [200, 150, 50, 50],
+    [400, 300, 60, 60],
+    [600, 100, 40, 80]
+  ]
+end
+
+func collides(x1, y1, w1, h1, x2, y2, w2, h2)
+  return x1 < x2 + w2 and x1 + w1 > x2 and y1 < y2 + h2 and y1 + h1 > y2
+end
+
+loop while win.open
+  clr "#0d1117"
+
+  # Input
+  var tecla:txt
+  key tecla
+
+  var old_px:num = px
+  var old_py:num = py
+
+  if tecla == "w"
+    py -= 5
+  end
+  if tecla == "s"
+    py += 5
+  end
+  if tecla == "a"
+    px -= 5
+  end
+  if tecla == "d"
+    px += 5
+  end
+  if tecla == "esc"
+    break
+  end
+
+  # Limites
+  if px < 0
+    px = 0
+  end
+  if px > 760
+    px = 760
+  end
+  if py < 0
+    py = 0
+  end
+  if py > 560
+    py = 560
+  end
+
+  # Colisao com obstaculos
+  var colidiu:bool = false
+  loop i:0 to len(obs)
+    var o:list = obs[i]
+    if collides(px, py, pw, ph, o[0], o[1], o[2], o[3])
+      colidiu = true
+    end
+  end
+
+  if colidiu
+    px = old_px
+    py = old_py
+  end
+
+  # Desenha jogador
+  drw px py pw ph "#16c79a"
+
+  # Desenha obstaculos
+  loop i:0 to len(obs)
+    var o:list = obs[i]
+    drw o[0] o[1] o[2] o[3] "#e94560"
+  end
+
+  # Info
+  outfb 10 10 "Colisao AABB" "#FFFFFF"
+  outfb 10 30 "WASD para mover | ESC para sair" "#888888"
+
+  if colidiu
+    outfb 10 50 "COLISAO!" "#FF0000"
+  end
+
+  drw
+  wait 16
+end

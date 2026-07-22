@@ -1,0 +1,22 @@
+run "retangulo"
+
+# Exemplo 19: Desenhar retangulos
+
+win
+  # Fundo preto
+  clr "#000000"
+
+  # Retangulo vermelho
+  drw 100 100 200 150 "#FF0000"
+
+  # Retangulo verde
+  drw 350 100 200 150 "#00FF00"
+
+  # Retangulo azul
+  drw 600 100 200 150 "#0000FF"
+
+  # Retangulo amarelo (sobreposicao)
+  drw 200 250 300 200 "#FFFF00"
+end
+
+wait 3000

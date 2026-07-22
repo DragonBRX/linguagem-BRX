@@ -1,0 +1,111 @@
+run "demo"
+
+# Exemplo 25: Demo Completa BRX v06
+# Combina todos os comandos visuais em uma unica demonstracao
+
+win
+  # === CENA 1: Intro ===
+  clr "#0d1117"
+  outfb 280 250 "BRX v06" "#e94560"
+  outfb 220 290 "Assembly x86-64 Puro" "#16c79a"
+  wait 1500
+
+  # === CENA 2: Formas geometricas ===
+  clr "#1a1a2e"
+
+  # Retangulos coloridos
+  drw 50 50 150 100 "#FF4444"
+  drw 220 50 150 100 "#44FF44"
+  drw 390 50 150 100 "#4444FF"
+  drw 560 50 150 100 "#FFFF44"
+  drw 730 50 150 100 "#FF44FF"
+
+  # Circulos
+  circ 125 250 60 "#e94560"
+  circ 295 250 60 "#16c79a"
+  circ 465 250 60 "#f4a261"
+  circ 635 250 60 "#9b5de5"
+  circ 805 250 60 "#00a8e8"
+
+  # Linhas conectando
+  lin 125 310 295 310 "#FFFFFF"
+  lin 295 310 465 310 "#FFFFFF"
+  lin 465 310 635 310 "#FFFFFF"
+  lin 635 310 805 310 "#FFFFFF"
+
+  outfb 280 400 "Formas geometricas" "#FFFFFF"
+  outfb 250 430 "win · drw · circ · lin" "#888888"
+  wait 2000
+
+  # === CENA 3: Texto e Info ===
+  clr "#16213e"
+
+  outfb 300 80 "ECOSSISTEMA BRX" "#e94560"
+  outfb 200 120 "7 Camadas Linguisticas" "#16c79a"
+
+  outfb 100 200 "BRX[E] EASY" "#FFFFFF"
+  outfb 100 220 "  var · if · loop · func" "#888888"
+
+  outfb 100 260 "BRX[V] VISUAL" "#FFFFFF"
+  outfb 100 280 "  win · drw · circ · key" "#888888"
+
+  outfb 100 320 "BRX[R] RUNTIME" "#FFFFFF"
+  outfb 100 340 "  upd · drw · wait" "#888888"
+
+  outfb 450 200 "BRX[B] BINARY" "#FFFFFF"
+  outfb 450 220 "  ELF · PE · Mach-O" "#888888"
+
+  outfb 450 260 "BRX[H] HARDWARE" "#FFFFFF"
+  outfb 450 280 "  mem · reg · syscalls" "#888888"
+
+  outfb 450 320 "BRX[S] SANDBOX" "#FFFFFF"
+  outfb 450 340 "  lim · load · isolate" "#888888"
+
+  outfb 280 400 "BRX[T] TRANSLATE" "#FFFFFF"
+  outfb 280 420 "  src · map · compatibilidade" "#888888"
+
+  wait 2500
+
+  # === CENA 4: Animacao simples ===
+  var bx:num = 0
+  var by:num = 300
+  var bvx:num = 5
+  var bvy:num = 3
+
+  loop i:0 to 200
+    clr "#0d1117"
+
+    # Bola quicando
+    circ bx by 20 "#e94560"
+
+    # Rastro
+    circ bx - 30 by 10 "#e9456033"
+    circ bx - 60 by 5 "#e9456011"
+
+    # Info
+    outfb 10 10 "Demo BRX v06" "#FFFFFF"
+    outfb 10 30 "Frame: " + str(i) "#888888"
+
+    # Atualiza fisica
+    bx += bvx
+    by += bvy
+
+    if bx > 780 or bx < 20
+      bvx = -bvx
+    end
+    if by > 580 or by < 20
+      bvy = -bvy
+    end
+
+    wait 16
+  end
+
+  # === CENA 5: Final ===
+  clr "#000000"
+  outfb 300 280 "FIM" "#e94560"
+  outfb 200 320 "Obrigado por testar BRX!" "#16c79a"
+  outfb 250 370 "dragonvps.github.io/linguagem-BRX" "#888888"
+  wait 2000
+end
+
+out "Demo completa finalizada."

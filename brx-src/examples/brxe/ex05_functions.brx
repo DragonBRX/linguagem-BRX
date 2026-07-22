@@ -1,0 +1,38 @@
+run "funcoes"
+
+# Funcao simples
+func soma(a:num, b:num)
+  return a + b
+end
+
+var resultado:num = soma(10, 20)
+out "10 + 20 = " + str(resultado)
+
+# Funcao com texto
+func saudacao(nome:txt)
+  return "Ola, " + nome + "!"
+end
+
+out saudacao("BRX")
+
+# Recursao
+func fatorial(n:num)
+  if n <= 1
+    return 1
+  end
+  return n * fatorial(n - 1)
+end
+
+out "5! = " + str(fatorial(5))
+
+# Funcao com lista
+func soma_lista(lst:list)
+  var total:num = 0
+  loop i:0 to len(lst)
+    total += lst[i]
+  end
+  return total
+end
+
+var nums:list = [1, 2, 3, 4, 5]
+out "Soma da lista = " + str(soma_lista(nums))

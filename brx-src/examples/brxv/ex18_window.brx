@@ -1,0 +1,13 @@
+run "janela"
+
+# Exemplo 18: Abrir janela/framebuffer
+# Requer: console Linux puro (TTY), /dev/fb0
+
+win
+  # Abre framebuffer em tela cheia
+end
+
+out "Janela aberta! Pressione qualquer tecla..."
+wait 2000
+
+# Fecha automaticamente ao fim do programa

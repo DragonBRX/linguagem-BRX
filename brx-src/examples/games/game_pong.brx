@@ -1,0 +1,109 @@
+run "pong"
+
+# Pong em BRX
+
+win
+  sz 800x600
+  bg "#0d1117"
+end
+
+# Jogador
+var py:num = 250
+var pscore:num = 0
+
+# CPU
+var cy:num = 250
+var cscore:num = 0
+
+# Bola
+var bx:num = 390
+var by:num = 290
+var bvx:num = 4
+var bvy:num = 3
+
+loop while win.open
+  # === INPUT ===
+  var tecla:txt
+  key tecla
+
+  if tecla == "w" and py > 0
+    py -= 6
+  end
+  if tecla == "s" and py < 500
+    py += 6
+  end
+  if tecla == "esc"
+    break
+  end
+
+  # === UPDATE ===
+  # CPU segue bola
+  if by > cy + 50 and cy < 500
+    cy += 4
+  end
+  if by < cy + 50 and cy > 0
+    cy -= 4
+  end
+
+  # Bola
+  bx += bvx
+  by += bvy
+
+  # Colisao com paredes
+  if by <= 0 or by >= 580
+    bvy = -bvy
+  end
+
+  # Colisao com jogador
+  if bx <= 30 and by >= py and by <= py + 100
+    bvx = abs(bvx)
+    bvx += 0.5
+  end
+
+  # Colisao com CPU
+  if bx >= 760 and by >= cy and by <= cy + 100
+    bvx = -abs(bvx)
+    bvx -= 0.5
+  end
+
+  # Pontuacao
+  if bx < 0
+    cscore += 1
+    bx = 390
+    by = 290
+    bvx = 4
+    bvy = 3
+  end
+  if bx > 800
+    pscore += 1
+    bx = 390
+    by = 290
+    bvx = -4
+    bvy = 3
+  end
+
+  # === DRAW ===
+  clr "#0d1117"
+
+  # Campo
+  lin 400 0 400 600 "#1a1a2e"
+
+  # Raquetes
+  drw 10 py 20 100 "#16c79a"    # Jogador
+  drw 770 cy 20 100 "#e94560"   # CPU
+
+  # Bola
+  circ bx by 10 "#FFFFFF"
+
+  # Placar
+  outfb 300 20 str(pscore) "#16c79a"
+  outfb 480 20 str(cscore) "#e94560"
+
+  # Info
+  outfb 10 570 "W/S: mover | ESC: sair" "#888888"
+
+  drw
+  wait 16
+end
+
+out "Placar final: Jogador " + str(pscore) + " x " + str(cscore) + " CPU"

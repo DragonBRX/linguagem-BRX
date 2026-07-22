@@ -1,0 +1,147 @@
+run "breakout"
+
+# Breakout em BRX
+
+win
+  sz 800x600
+  bg "#0d1117"
+end
+
+# Paddle
+var px:num = 350
+var py:num = 560
+var pw:num = 100
+var ph:num = 15
+
+# Bola
+var bx:num = 390
+var by:num = 300
+var bvx:num = 3
+var bvy:num = -3
+
+# Blocos
+var blocks:list = []
+var ROWS:num = 5
+var COLS:num = 8
+var BW:num = 90
+var BH:num = 25
+
+loop r:0 to ROWS
+  loop c:0 to COLS
+    var cor:txt = "#e94560"
+    if r == 1
+      cor = "#f4a261"
+    end
+    if r == 2
+      cor = "#16c79a"
+    end
+    if r == 3
+      cor = "#00a8e8"
+    end
+    if r == 4
+      cor = "#9b5de5"
+    end
+    push(blocks, [c * 100 + 5, r * 35 + 50, BW, BH, cor, true])
+  end
+end
+
+var score:num = 0
+var vidas:num = 3
+
+loop while win.open and vidas > 0
+  # === INPUT ===
+  var tecla:txt
+  key tecla
+
+  if tecla == "a" and px > 0
+    px -= 8
+  end
+  if tecla == "d" and px < 700
+    px += 8
+  end
+  if tecla == "esc"
+    break
+  end
+
+  # === UPDATE ===
+  bx += bvx
+  by += bvy
+
+  # Paredes
+  if bx <= 0 or bx >= 790
+    bvx = -bvx
+  end
+  if by <= 0
+    bvy = -bvy
+  end
+
+  # Paddle
+  if by >= py and by <= py + ph and bx >= px and bx <= px + pw
+    bvy = -abs(bvy)
+    var hit_pos:num = (bx - px) / pw
+    bvx = (hit_pos - 0.5) * 6
+  end
+
+  # Blocos
+  loop i:0 to len(blocks)
+    var b:list = blocks[i]
+    if b[5] and bx >= b[0] and bx <= b[0] + b[2] and by >= b[1] and by <= b[1] + b[3]
+      b[5] = false
+      bvy = -bvy
+      score += 10
+    end
+  end
+
+  # Perde vida
+  if by > 600
+    vidas -= 1
+    bx = 390
+    by = 300
+    bvx = 3
+    bvy = -3
+    px = 350
+  end
+
+  # === DRAW ===
+  clr "#0d1117"
+
+  # Blocos
+  loop i:0 to len(blocks)
+    var b:list = blocks[i]
+    if b[5]
+      drw b[0] b[1] b[2] b[3] b[4]
+    end
+  end
+
+  # Paddle
+  drw px py pw ph "#16c79a"
+
+  # Bola
+  circ bx by 8 "#FFFFFF"
+
+  # Info
+  outfb 10 10 "Breakout BRX" "#FFFFFF"
+  outfb 10 30 "Score: " + str(score) "#888888"
+  outfb 700 10 "Vidas: " + str(vidas) "#e94560"
+
+  if vidas == 0
+    outfb 350 280 "GAME OVER" "#e94560"
+  end
+
+  # Verifica vitoria
+  var restantes:num = 0
+  loop i:0 to len(blocks)
+    if blocks[i][5]
+      restantes += 1
+    end
+  end
+  if restantes == 0
+    outfb 330 280 "VITORIA!" "#16c79a"
+    break
+  end
+
+  drw
+  wait 16
+end
+
+out "Score final: " + str(score)

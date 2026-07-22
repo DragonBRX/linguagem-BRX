@@ -1,0 +1,37 @@
+run "clear"
+
+# Exemplo 23: Limpar tela com cores diferentes
+
+win
+  # Vermelho
+  clr "#FF0000"
+  outfb 300 280 "VERMELHO" "#FFFFFF"
+  wait 500
+
+  # Verde
+  clr "#00FF00"
+  outfb 300 280 "VERDE" "#000000"
+  wait 500
+
+  # Azul
+  clr "#0000FF"
+  outfb 300 280 "AZUL" "#FFFFFF"
+  wait 500
+
+  # Amarelo
+  clr "#FFFF00"
+  outfb 300 280 "AMARELO" "#000000"
+  wait 500
+
+  # Preto
+  clr "#000000"
+  outfb 300 280 "PRETO" "#FFFFFF"
+  wait 500
+
+  # Gradiente manual
+  loop i:0 to 255
+    var hex:txt = "#" + str(i) + "00" + str(255 - i)
+    clr hex
+    wait 10
+  end
+end

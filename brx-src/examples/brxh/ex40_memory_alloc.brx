@@ -1,0 +1,24 @@
+run "memoria"
+
+# Exemplo 40: Alocacao de memoria via hardware
+
+out "=== BRX[H] Hardware - Memoria ==="
+
+hw
+  # Aloca 1024 bytes
+  mem alloc 1024 -> buffer
+  out "Buffer alocado em: " + str(buffer)
+
+  # Aloca 4096 bytes (1 pagina)
+  mem alloc 4096 -> pagina
+  out "Pagina alocada em: " + str(pagina)
+
+  # Libera
+  mem free buffer
+  out "Buffer liberado."
+
+  mem free pagina
+  out "Pagina liberada."
+end
+
+out "Operacao de memoria concluida."

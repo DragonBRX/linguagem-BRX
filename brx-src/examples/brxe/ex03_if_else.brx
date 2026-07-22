@@ -1,0 +1,22 @@
+run "condicionais"
+
+var idade:num = 25
+var nome:txt = "Maria"
+
+if idade >= 18
+  out nome + " e maior de idade."
+else
+  out nome + " e menor de idade."
+end
+
+var nota:num = 85
+
+if nota >= 90
+  out "Nota A"
+else if nota >= 80
+  out "Nota B"
+else if nota >= 70
+  out "Nota C"
+else
+  out "Nota D"
+end

@@ -1,0 +1,22 @@
+run "animacao"
+
+# Exemplo 30: Animacao com game loop
+
+win
+  sz 800x600
+  tt "Animacao BRX"
+  bg "#0d1117"
+
+  spr "" x:100 y:300 z:2
+    vel x:3 y:0
+    col "#FF4444"
+    w 40
+    h 40
+  end
+end
+
+loop while win.open
+  upd
+  drw
+  wait 16
+end

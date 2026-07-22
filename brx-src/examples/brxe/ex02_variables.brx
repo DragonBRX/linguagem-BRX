@@ -1,0 +1,24 @@
+run "variaveis"
+
+# Declaracao de variaveis
+var x:num = 10
+var y:num = 3.14
+var nome:txt = "BRX"
+var ativo:bool = true
+var lista:list = [1, 2, 3, "quatro", true]
+
+out "x = " + str(x)
+out "y = " + str(y)
+out "nome = " + nome
+out "ativo = " + str(ativo)
+out "lista = " + str(lista)
+
+# Atribuicao
+x += 5
+y *= 2
+nome = "BRX v06"
+
+out "Apos modificacoes:"
+out "x = " + str(x)
+out "y = " + str(y)
+out "nome = " + nome

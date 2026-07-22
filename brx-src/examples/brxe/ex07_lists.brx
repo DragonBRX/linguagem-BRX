@@ -1,0 +1,25 @@
+run "listas"
+
+# Lista heterogenea
+var mista:list = [1, "dois", 3.0, true]
+out "Lista mista: " + str(mista)
+
+# Push e Pop
+var nums:list = [10, 20, 30]
+out "Original: " + str(nums)
+
+push(nums, 40)
+out "Apos push(40): " + str(nums)
+
+var removido:num = pop(nums)
+out "Removido: " + str(removido)
+out "Apos pop: " + str(nums)
+
+# Builtins de lista
+out "Tamanho: " + str(len(nums))
+
+# Lista de strings
+var nomes:list = ["Ana", "Bruno", "Carla"]
+out "Nomes: " + str(nomes)
+out "Primeiro: " + nomes[0]
+out "Ultimo: " + nomes[len(nomes) - 1]

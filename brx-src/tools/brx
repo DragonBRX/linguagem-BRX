@@ -1,0 +1,14 @@
+#!/bin/bash
+# BRX CLI Wrapper
+# Encaminha para o executável real
+
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+BRX_BIN="$PROJECT_ROOT/build/linux/brx"
+
+if [ ! -f "$BRX_BIN" ]; then
+    echo "BRX não compilado. Executando build..."
+    "$SCRIPT_DIR/build.sh"
+fi
+
+exec "$BRX_BIN" "$@"

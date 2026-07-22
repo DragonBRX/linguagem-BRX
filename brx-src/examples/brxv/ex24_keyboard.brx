@@ -1,0 +1,61 @@
+run "teclado"
+
+# Exemplo 24: Leitura de teclado via evdev
+# Requer: /dev/input/event0 (modo nao-bloqueante)
+
+win
+  clr "#0d1117"
+  outfb 200 50 "TESTE DE TECLADO" "#e94560"
+  outfb 150 100 "Pressione WASD ou SETAS para mover" "#FFFFFF"
+  outfb 200 130 "ESC para sair" "#888888"
+
+  var px:num = 375
+  var py:num = 275
+  var cor:txt = "#16c79a"
+
+  loop forever
+    # Desenha jogador
+    clr "#0d1117"
+    outfb 200 50 "TESTE DE TECLADO" "#e94560"
+    outfb 150 100 "WASD ou SETAS para mover | ESC para sair" "#FFFFFF"
+    drw px py 50 50 cor
+
+    # Le input
+    var tecla:txt
+    key tecla
+
+    if tecla == "w" or tecla == "up"
+      py -= 10
+    end
+    if tecla == "s" or tecla == "down"
+      py += 10
+    end
+    if tecla == "a" or tecla == "left"
+      px -= 10
+    end
+    if tecla == "d" or tecla == "right"
+      px += 10
+    end
+    if tecla == "esc"
+      break
+    end
+
+    # Limites
+    if px < 0
+      px = 0
+    end
+    if px > 750
+      px = 750
+    end
+    if py < 0
+      py = 0
+    end
+    if py > 550
+      py = 550
+    end
+
+    wait 16
+  end
+end
+
+out "Saindo..."

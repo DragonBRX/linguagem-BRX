@@ -1,0 +1,21 @@
+run "circulo"
+
+# Exemplo 20: Desenhar circulos
+
+win
+  clr "#1a1a2e"
+
+  # Circulo central grande
+  circ 400 300 100 "#e94560"
+
+  # Circulos menores ao redor
+  circ 200 200 50 "#16c79a"
+  circ 600 200 50 "#f4a261"
+  circ 200 400 50 "#9b5de5"
+  circ 600 400 50 "#00a8e8"
+
+  # Circulo pequeno no centro
+  circ 400 300 30 "#FFFFFF"
+end
+
+wait 3000

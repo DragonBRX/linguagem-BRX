@@ -1,0 +1,34 @@
+run "texto"
+
+# Exemplo 22: Texto na tela (bitmap font 8x8)
+
+win
+  clr "#16213e"
+
+  # Titulo
+  outfb 250 50 "LINGUAGEM BRX" "#e94560"
+
+  # Subtitulo
+  outfb 280 100 "v0.6 - Assembly Puro" "#16c79a"
+
+  # Info
+  outfb 50 200 "> FrameBuffer direto /dev/fb0" "#FFFFFF"
+  outfb 50 240 "> Zero dependencias externas" "#FFFFFF"
+  outfb 50 280 "> 2793 linhas de assembly" "#FFFFFF"
+  outfb 50 320 "> 7 camadas linguisticas" "#FFFFFF"
+
+  # Cores
+  outfb 50 400 "Cores disponiveis:" "#f4a261"
+  outfb 50 430 "VERMELHO" "#FF0000"
+  outfb 200 430 "VERDE" "#00FF00"
+  outfb 320 430 "AZUL" "#0000FF"
+  outfb 430 430 "AMARELO" "#FFFF00"
+  outfb 570 430 "CIANO" "#00FFFF"
+  outfb 680 430 "MAGENTA" "#FF00FF"
+
+  # Rodape
+  outfb 250 550 "Pressione qualquer tecla..." "#888888"
+end
+
+# Aguarda tecla
+key r
