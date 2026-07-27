@@ -1,0 +1,7 @@
+# Exemplo mínimo da linguagem-base BRX
+let nome = "BRX"
+let base = 10
+set base = base * 3
+out "Linguagem: " + nome
+out base
+return base + 1
