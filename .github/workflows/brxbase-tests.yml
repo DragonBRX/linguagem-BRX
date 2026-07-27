@@ -1,0 +1,31 @@
+name: BRX Base Tests
+
+on:
+  push:
+    branches:
+      - main
+      - feat/brx-base-multilinguagem
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Executar testes
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Testar compilação para IR
+        run: python3 -m brxbase.cli exemplos/base_multilinguagem.brx --emit-ir
+
+      - name: Testar execução
+        run: python3 -m brxbase.cli exemplos/base_multilinguagem.brx --run
