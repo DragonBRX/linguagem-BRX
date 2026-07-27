@@ -1,20 +1,7 @@
-# Exemplo da linguagem-base BRX
-fn dobro(valor)
-    return valor * 2
-end
-
-let soma = 0
-loop i:1 to 5
-    if i == 3
-        continue
-    end
-    set soma = soma + dobro(i)
-end
-
-if soma > 10
-    out "resultado=" + soma
-else
-    out "resultado pequeno"
-end
-
-return soma
+# Exemplo mínimo da linguagem-base BRX
+let nome = "BRX"
+let base = 10
+set base = base * 3
+out "Linguagem: " + nome
+out base
+return base + 1
