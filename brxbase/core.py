@@ -180,6 +180,8 @@ class SafeEvaluator(ast.NodeVisitor):
         return self.variables[node.id]
     def visit_BinOp(self, node):
         left, right = self.visit(node.left), self.visit(node.right)
+        if isinstance(node.op, ast.Add) and (isinstance(left, str) or isinstance(right, str)):
+            return str(left) + str(right)
         ops = {ast.Add: lambda a,b:a+b, ast.Sub:lambda a,b:a-b, ast.Mult:lambda a,b:a*b,
                ast.Div:lambda a,b:a/b, ast.FloorDiv:lambda a,b:a//b, ast.Mod:lambda a,b:a%b}
         handler = ops.get(type(node.op))
