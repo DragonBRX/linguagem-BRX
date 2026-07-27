@@ -1,0 +1,15 @@
+[project]
+name = "linguagem-brx"
+version = "0.1.0"
+description = "Linguagem-base BRX e representação intermediária BRX-IR"
+requires-python = ">=3.11"
+
+[project.scripts]
+brx = "brxbase.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["brxbase"]
